@@ -1,0 +1,115 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+//Pamela Hausdorf
+//Program to implement generics in a linear search
+namespace GenericLinearSearch
+{
+    public partial class Form1 : Form
+    {
+
+        Random rnd = new Random(); //store random number
+        double[] doubleArray = new double[20]; //double array
+        int[] intArray = new int[20]; //int array
+        bool generateDouble = false; //if button was clicked
+        bool generateInt = false; //if button was clicked
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void generateInt_Button_Click(object sender, EventArgs e)
+        {
+
+            generateInt = true;
+            generateDouble = false;
+            richTextBox1.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
+
+            //outputs array
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                intArray[i] = rnd.Next(0, 100);
+
+                richTextBox1.AppendText(intArray[i] + " ");
+            }// end for
+
+
+        }// end method generateInt_Button_Click
+
+        private void generateDouble_Button_Click(object sender, EventArgs e)
+        {
+            generateDouble = true;
+            generateInt = false;
+            richTextBox1.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
+
+            //output array
+            for (int i = 0; i < doubleArray.Length; i++)
+            {
+                
+                doubleArray[i] = Math.Round(rnd.NextDouble() * 100, 2);
+                richTextBox1.AppendText(doubleArray[i] + " ");
+            }// end for
+
+        }//end method generateDouble_Button_Click
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int intKey;//store search key if int
+            int index;
+            double doubleKey;//store search key if double
+
+            if (generateInt) // if button was clicked
+            {
+                try //try to convert text to int
+                {
+                    intKey = Convert.ToInt32(textBox1.Text);
+                    intKey = int.Parse(textBox1.Text);
+                    LinearArray<int> mine = new LinearArray<int>();
+                    index = mine.Search(intKey, intArray);
+                    textBox2.Text = index.ToString();
+                }//end try
+                catch (FormatException)
+                {
+                    MessageBox.Show("Input in wrong format");
+                }//end catch
+                textBox1.Clear();
+               
+            }//end if
+
+            else if
+                (generateDouble)//if button was clicked
+            {
+                try //try to convert text to double
+                {
+                    doubleKey = Convert.ToDouble(textBox1.Text);
+                    doubleKey = double.Parse(textBox1.Text);
+                    LinearArray<double> dub = new LinearArray<double>();
+                    index = dub.Search(doubleKey, doubleArray);
+                    textBox2.Text = index.ToString();
+                }//end try
+                catch (FormatException)
+                {
+                    MessageBox.Show("Input in wrong format");
+                }//end catch
+                textBox1.Clear();
+            }//end else if
+
+
+
+            
+
+        }
+    }
+
+}
