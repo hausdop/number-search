@@ -19,7 +19,7 @@ namespace GenericLinearSearch
                 if (array[index].CompareTo(searchKey) == 0)
                     //returns position in array
                     return index + 1;
-            return -1;
+            return -4;
         }// end method Search
 
     }// end class 
