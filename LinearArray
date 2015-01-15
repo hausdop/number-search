@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Text;
+
+//Pamela Hausdorf
+//Program to implement generics in a linear search
+namespace GenericLinearSearch
+{
+    //declaration of generic LinearArray class using Icomparable interface
+    class LinearArray <T> where T : IComparable<T>
+    {
+        //generic search class that reads a search key and outputs position in array (index + 1)
+        public int Search (T searchKey, T[] array)
+        {
+            //step through array until searchKey is found
+            for (int index = 0; index < array.Length; index++)
+                if (array[index].CompareTo(searchKey) == 0)
+                    //returns position in array
+                    return index + 1;
+            return -1;
+        }// end method Search
+
+    }// end class 
+}// end namespace
